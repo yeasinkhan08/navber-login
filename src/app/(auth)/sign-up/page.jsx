@@ -14,7 +14,7 @@ import {
   TextArea,
   TextField,
 } from "@heroui/react";
-import { signUp } from "@/lib/auth-client";
+import { signIn, signUp } from "@/lib/auth-client";
 
 const SignUpPage = () => {
   const onSubmit = async (e) => {
@@ -34,6 +34,15 @@ const SignUpPage = () => {
 
     // alert("Form submitted successfully!");
   };
+
+  const handleGoogleSignIn = async () => {
+    const resData = await signIn.social({
+      provider: "google",
+    });
+
+    console.log(resData);
+  };
+
   return (
     <div className="min-h-screen justify-center items-center">
       sign up please
@@ -94,6 +103,8 @@ const SignUpPage = () => {
           </Fieldset.Actions>
         </Fieldset>
       </Form>
+      <p>OR</p>
+      <button onClick={handleGoogleSignIn}>sign in with google</button>
     </div>
   );
 };
